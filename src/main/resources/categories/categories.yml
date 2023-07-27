@@ -1,0 +1,5 @@
+quiz-inventory:
+  size: 27 #slots amount
+  title: "Quiz" #inventory title
+  category:
+    name: "%category_identifier% Category" #no need for colors
