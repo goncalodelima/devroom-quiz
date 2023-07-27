@@ -1,0 +1,16 @@
+no-command: "&cOnly players can execute this command"
+maximum-score: "&cYou've already made the maximum score!"
+click-to-play: "&aClick to play"
+invalid-value: "&cThe answer has to be &f'true' §cor &f'false'&a."
+right-question: "&a§lYEAH! &aYou got the answer right!"
+wrong-question: "§cYou got this question wrong ;(. Try next time with more care. Score: §f%score%/10"
+quiz-finished: "§a§lYEAH! §aYou finished the quiz with the maximum score! Congratulations"
+quiz-question:
+  - ""
+  - "§e§lQUIZ"
+  - "%question%"
+  - ""
+quiz-started:
+  - "&aYou started the quiz! Good luck"
+  - ""
+  - "%question%"

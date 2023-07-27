@@ -1,4 +1,4 @@
-package pt.dioguin.boss.utils;
+package pt.gongas.quiz.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,14 +23,6 @@ public class Configuration extends YamlConfiguration {
         try {
             load(file);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveConfig() {
-        try {
-            save(file);
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

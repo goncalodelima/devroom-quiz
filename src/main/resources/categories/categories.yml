@@ -1,5 +1,14 @@
-quiz-inventory:
-  size: 27 #slots amount
-  title: "Quiz" #inventory title
-  category:
-    name: "%category_identifier% Category" #no need for colors
+Football:
+  questions: #question : answer
+    - "Question 1. True or false? : true"
+    - "Question 2. True or false? : false"
+
+Geography:
+  questions: #question : answer
+    - "Question 1. True or false? : false"
+    - "Question 2. True or false? : true"
+
+History:
+  questions: #question : answer
+    - "Question 1. True or false? : true"
+    - "Question 2. True or false? : true"

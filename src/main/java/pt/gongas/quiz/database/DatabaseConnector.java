@@ -1,4 +1,4 @@
-package pt.gongas.twinscore.utils.database;
+package pt.gongas.quiz.database;
 
 import java.sql.Connection;
 
@@ -8,7 +8,7 @@ public abstract class DatabaseConnector {
 
     public abstract void connect();
     public abstract void close();
-    public abstract void createTables();
+    public abstract void createTable();
     public static Connection getConnection() { return connection; }
 
 }

@@ -2,16 +2,34 @@ package pt.gongas.quiz.category;
 
 import pt.gongas.quiz.category.interfaces.Category;
 
-public class FootballCategory extends Category {
+public class Football extends Category {
 
-    public FootballCategory(int punctuation){
-        setName("Football Category");
-        setPunctuation(punctuation);
+    public Football(int score){
+        setIdentifier("Football");
+        setScore(score);
     }
 
     @Override
-    public String getName() {
-        return "Football Category";
+    public String getIdentifier() {
+        return super.getIdentifier();
+    }
+
+    public String getQuestion() { return super.getQuestion(); }
+
+    public String getAnswer() {
+
+        // question not found
+        if (getQuestion() == null)
+            return null;
+
+        int colonIndex = getQuestion().indexOf(":");
+        if (colonIndex != -1) {
+            String answer = getQuestion().substring(colonIndex + 1).trim();
+            setAnswer(answer);
+        }
+
+        // Question in invalid format
+        return null;
     }
 
 }

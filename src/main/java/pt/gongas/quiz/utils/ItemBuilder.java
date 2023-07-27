@@ -1,18 +1,17 @@
-package pt.gongas.twinscore.utils;
+package pt.gongas.quiz.utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.UUID;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class ItemBuilder {
 
@@ -22,28 +21,8 @@ public class ItemBuilder {
         this.item = item;
     }
 
-    public ItemBuilder(Material type){
-        this(new ItemStack(type));
-    }
-
-    public ItemBuilder(Material type , int amount){
-        this(new ItemStack(type , amount));
-    }
-
     public ItemBuilder(Material type , int amount, short data){
         this(new ItemStack(type , amount, data));
-    }
-
-    public ItemBuilder changeSkull(Consumer<SkullMeta> consumer){
-        SkullMeta meta = (SkullMeta) item.getItemMeta();
-        consumer.accept(meta);
-        item.setItemMeta(meta);
-        return this;
-    }
-
-    public ItemBuilder changeItem(Consumer<ItemStack> consumer){
-        consumer.accept(item);
-        return this;
     }
 
     public ItemBuilder setSkull(String url){
@@ -70,60 +49,12 @@ public class ItemBuilder {
         item.setItemMeta(itemMeta);
         return this;
     }
-
-    public ItemBuilder glow(boolean glow){
-
-        if (!glow) return this;
-
-        ItemMeta meta = item.getItemMeta();
-        meta.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        item.setItemMeta(meta);
-        return this;
-    }
-
-    public ItemBuilder addEnchant(Enchantment enchantment, int level){
-        return changeItemMeta(meta -> meta.addEnchant(enchantment, level, true));
-    }
-
-    public ItemBuilder unbreakable(){
-        return changeItemMeta(meta -> meta.spigot().setUnbreakable(true));
-    }
-
     public ItemBuilder name(String name){
         return changeItemMeta(it -> it.setDisplayName(name.replace("&", "§")));
     }
 
     public ItemBuilder setLore(String... lore){
         return changeItemMeta(it -> it.setLore(Arrays.asList(lore)));
-    }
-
-    public ItemBuilder setLore(List<String> lore){
-        return changeItemMeta(it -> it.setLore(lore.stream().map(s -> s.replace("&", "§")).collect(Collectors.toList())));
-    }
-
-    public ItemBuilder addLore(String... lore){
-        return changeItemMeta(meta -> {
-
-            List<String> loreString = new ArrayList<>();
-            if (meta.hasLore())
-                loreString = meta.getLore();
-
-            loreString.addAll(Arrays.asList(lore));
-            meta.setLore(loreString);
-        });
-    }
-
-    public ItemBuilder addLore(List<String> lore){
-        return changeItemMeta(meta -> {
-
-            List<String> loreString = new ArrayList<>();
-            if (meta.hasLore())
-                loreString = meta.getLore();
-
-            loreString.addAll(lore);
-            meta.setLore(loreString);
-        });
     }
 
     public ItemStack build(){

@@ -1,25 +1,31 @@
 package pt.gongas.quiz.database;
 
 import org.bukkit.Bukkit;
-import pt.gongas.quiz.QuizPlugin;
 
-import java.io.File;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class MongoDB extends DatabaseConnector {
+public class MariaDB extends DatabaseConnector {
 
+    private final String host;
+    private final int port;
     private final String database;
+    private final String username;
+    private final String password;
 
-    public MongoDB(String database) {
+    public MariaDB(String host, int port, String database, String username, String password) {
+        this.host = host;
+        this.port = port;
         this.database = database;
+        this.username = username;
+        this.password = password;
     }
 
     public void connect() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:" + QuizPlugin.getInstance().getDataFolder() + File.separator + this.database);
+            Class.forName("org.mariadb.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mariadb://" + host + ":" + port + "/" + database, username, password);
             Bukkit.getConsoleSender().sendMessage("§a[devroom-quiz] Connection opened successfully");
             createTable();
         } catch (SQLException | ClassNotFoundException e) {

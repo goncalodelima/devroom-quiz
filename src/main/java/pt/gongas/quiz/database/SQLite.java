@@ -1,7 +1,7 @@
-package pt.gongas.twinscore.utils.database;
+package pt.gongas.quiz.database;
 
 import org.bukkit.Bukkit;
-import pt.gongas.twinscore.CorePlugin;
+import pt.gongas.quiz.QuizPlugin;
 
 import java.io.File;
 import java.sql.DriverManager;
@@ -10,15 +10,21 @@ import java.sql.SQLException;
 
 public class SQLite extends DatabaseConnector {
 
+    private final String database;
+
+    public SQLite(String database) {
+        this.database = database;
+    }
+
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:" + CorePlugin.getInstance().getDataFolder() + File.separator + "database.db");
-            Bukkit.getConsoleSender().sendMessage("§a[twins-core] Connection opened successfully");
-            createTables();
+            connection = DriverManager.getConnection("jdbc:sqlite:" + QuizPlugin.getInstance().getDataFolder() + File.separator + this.database);
+            Bukkit.getConsoleSender().sendMessage("§a[devroom-quiz] Connection opened successfully");
+            createTable();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§c[twins-core] Error while opening connection");
+            Bukkit.getConsoleSender().sendMessage("§c[devroom-quiz] Error while opening connection");
         }
     }
 
@@ -27,45 +33,19 @@ public class SQLite extends DatabaseConnector {
             try {
                 connection.close();
                 connection = null;
-                System.out.println("§a[twins-core] Connection closed successfully");
+                System.out.println("§a[devroom-quiz] Connection closed successfully");
             } catch (SQLException e) {
-                System.out.println("§c[twins-core] Error while closing connection");
+                System.out.println("§c[devroom-quiz] Error while closing connection");
                 e.printStackTrace();
             }
         }
     }
 
-    public void createTables() {
+    public void createTable() {
         try {
-            // Create cupboard table
-            PreparedStatement cupboardStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS cupboard (NAME VARCHAR(255), LOCATION VARCHAR(255), LEVEL INT)");
-            cupboardStatement.executeUpdate();
-            cupboardStatement.close();
-
-            // Create cupboardUser table
-            PreparedStatement cupboardUserStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS cupboardUser (NAME VARCHAR(255), CUPBOARD VARCHAR(255))");
-            cupboardUserStatement.executeUpdate();
-            cupboardUserStatement.close();
-
-            // Create gang table
-            PreparedStatement gangStatemnet = connection.prepareStatement("CREATE TABLE IF NOT EXISTS gang (NAME VARCHAR(255), OWNER VARCHAR(255), MODERATORS TEXT, MEMBERS TEXT, POINTS INTEGER)");
-            gangStatemnet.executeUpdate();
-            gangStatemnet.close();
-
-            // Create research table
-            PreparedStatement researchStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS research (NAME VARCHAR(255), RESEARCHES TEXT, LEVELS INTEGER, POINTS INTEGER)");
-            researchStatement.executeUpdate();
-            researchStatement.close();
-
-            // Create user table
-            PreparedStatement userStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS user (NAME VARCHAR(255), DEATHLOCATION VARCHAR(255), KILLS INT, PLAYTIME FLOAT)");
-            userStatement.executeUpdate();
-            userStatement.close();
-
-            // Create door table
-            PreparedStatement doorStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS door (NAME VARCHAR(255), PLAYERS VARCHAR(255), LOCATION VARCHAR(255), PASSWORD INT)");
-            doorStatement.executeUpdate();
-            doorStatement.close();
+            PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS user (NAME VARCHAR(255), CATEGORIES TEXT)");
+            statement.executeUpdate();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
