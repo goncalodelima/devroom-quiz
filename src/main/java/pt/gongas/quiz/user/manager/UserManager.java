@@ -6,10 +6,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import pt.gongas.quiz.QuizPlugin;
-import pt.gongas.quiz.category.Football;
-import pt.gongas.quiz.category.Geography;
-import pt.gongas.quiz.category.History;
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.impl.Football;
+import pt.gongas.quiz.category.impl.Geography;
+import pt.gongas.quiz.category.impl.History;
+import pt.gongas.quiz.category.Category;
 import pt.gongas.quiz.database.DatabaseConnector;
 import pt.gongas.quiz.user.User;
 

@@ -7,10 +7,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pt.gongas.quiz.QuizPlugin;
-import pt.gongas.quiz.category.Football;
-import pt.gongas.quiz.category.Geography;
-import pt.gongas.quiz.category.History;
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.impl.Football;
+import pt.gongas.quiz.category.impl.Geography;
+import pt.gongas.quiz.category.impl.History;
+import pt.gongas.quiz.category.Category;
 import pt.gongas.quiz.user.User;
 
 import java.util.Arrays;

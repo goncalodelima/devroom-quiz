@@ -4,7 +4,7 @@ import lombok.Getter;
 import me.saiintbrisson.minecraft.ViewFrame;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.Category;
 import pt.gongas.quiz.command.QuizCommand;
 import pt.gongas.quiz.database.DatabaseConnector;
 import pt.gongas.quiz.database.MariaDB;

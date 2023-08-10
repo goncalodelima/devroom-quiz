@@ -1,25 +1,17 @@
-package pt.gongas.quiz.category.interfaces;
+package pt.gongas.quiz.category;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import pt.gongas.quiz.QuizPlugin;
 
 import java.util.List;
 import java.util.Random;
 
+@Data
 public abstract class Category {
 
-    @Getter
-    @Setter
     private String identifier;
-    @Getter
-    @Setter
     private int score;
-    @Setter
-    @Getter
     private String question;
-    @Setter
-    @Getter
     private String answer;
 
     public void addScore(int score) { setScore(getScore() + score); }

@@ -2,7 +2,7 @@ package pt.gongas.quiz.user;
 
 import lombok.Getter;
 import pt.gongas.quiz.QuizPlugin;
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.Category;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package pt.gongas.quiz.category;
+package pt.gongas.quiz.category.impl;
 
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.Category;
 
-public class Geography extends Category {
+public class Football extends Category {
 
-    public Geography(int score){
-        setIdentifier("Geography");
+    public Football(int score){
+        setIdentifier("Football");
         setScore(score);
     }
 

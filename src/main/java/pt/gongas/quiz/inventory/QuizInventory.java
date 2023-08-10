@@ -7,7 +7,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pt.gongas.quiz.QuizPlugin;
-import pt.gongas.quiz.category.interfaces.Category;
+import pt.gongas.quiz.category.Category;
 import pt.gongas.quiz.user.User;
 import pt.gongas.quiz.utils.ItemBuilder;
 
