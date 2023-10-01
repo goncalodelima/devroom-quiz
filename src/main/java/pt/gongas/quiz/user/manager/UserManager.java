@@ -47,6 +47,8 @@ public class UserManager {
             new User(result.getString("NAME"), Arrays.asList(new Football(Math.toIntExact((Long) categories.get("Football"))), new Geography(Math.toIntExact((Long) categories.get("Geography"))), new History(Math.toIntExact((Long) categories.get("History")))));
         }
 
+        statement.close();
+
         Bukkit.getConsoleSender().sendMessage("§a[devroom-quiz] §f" + this.users.size() + " §ausers were loaded");
     }
 
@@ -69,6 +71,7 @@ public class UserManager {
         statement.setString(2, categories);
 
         statement.execute();
+        statement.close();
 
         if (debug)
             Bukkit.getConsoleSender().sendMessage("§a[devroom-quiz] User §f" + user.name() + " §ahas been successfully saved.");
