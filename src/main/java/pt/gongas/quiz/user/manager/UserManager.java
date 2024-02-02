@@ -48,6 +48,7 @@ public class UserManager {
         }
 
         statement.close();
+        result.close();
 
         Bukkit.getConsoleSender().sendMessage("§a[devroom-quiz] §f" + this.users.size() + " §ausers were loaded");
     }
