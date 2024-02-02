@@ -38,7 +38,6 @@ public class MariaDB extends DatabaseConnector {
         if (connection != null) {
             try {
                 connection.close();
-                connection = null;
                 System.out.println("§a[devroom-quiz] Connection closed successfully");
             } catch (SQLException e) {
                 System.out.println("§c[devroom-quiz] Error while closing connection");
